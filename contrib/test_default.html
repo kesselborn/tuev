@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="<%= @qunit_css %>" type="text/css"/>
     <title><%= @test_set_name %></title>
     <script type="text/javascript" src="<%= @qunit_js %>"></script>
-    <script type="text/javascript" src="<%= @tuev_qunit_js %>"></script>
   </head>
   <body>
     <h1 id="qunit-header"><%= @test_set_name %> tests</h1>
@@ -77,6 +76,9 @@
     <% @test_set.each do |test| %>
       <script type="text/javascript" src="<%= test %>"></script>
     <% end %>
+
+    <!-- leave this at the bottom sir! -->
+    <script type="text/javascript" src="<%= @tuev_qunit_js %>"></script>
 
   </body>
 </html>

@@ -27,7 +27,6 @@ class Tuev
       @qunit_css       = file_url(Tuev.contrib_dir, "qunit.css")
       @qunit_js        = file_url(Tuev.contrib_dir, "qunit.js")
       @tuev_qunit_js   = file_url(Tuev.contrib_dir, "tuev_qunit.js")
-      @mockjax_js      = file_url(Tuev.contrib_dir, "jquery.mockjax.js")
       @test_suite_name = test_suite_config["name"]
 
       @combine_tests   = test_suite_config["combine_tests"]

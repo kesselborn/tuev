@@ -63,7 +63,14 @@ namespace :tuev do
 
   desc "run tests"
   task :run do
-    puts Tuev.config.inspect
+    failures = 0
+    Tuev.test_suites.each do |test_suite|
+      test_suite.create_test_files.each do |file|
+        failures += QunitRunner.new(file).run
+      end
+    end
+
+    exit(failures)
   end
 
   desc "create static testfiles for qunit tests"

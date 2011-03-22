@@ -1,4 +1,5 @@
 require 'tuev/tuev.rb'
+require 'tuev/tuev_runner.rb'
 require 'yaml'
 
 Tuev.gem_path = Gem.searcher.find('tuev').full_gem_path

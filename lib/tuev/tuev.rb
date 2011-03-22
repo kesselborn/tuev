@@ -59,7 +59,7 @@ class Tuev
 
     private
     def title_from_filename(filename)
-      filename.gsub(out_path, '').gsub('.html','').gsub('.js','').gsub('_',' ')
+      filename.gsub(/#{out_path}[\/]*/, '').gsub('.html','').gsub('_js','').gsub('_',' ')
     end
 
     def out_path

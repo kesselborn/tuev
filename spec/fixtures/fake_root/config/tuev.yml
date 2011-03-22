@@ -1,0 +1,39 @@
+# basic selenium stuff
+selenium_stuff:
+  host: 'localhost'                   # host which runs selenium server
+  port: '4444'                        # selenium server port (if you get connection refused, try 5555)
+  browsers:           
+    - '*firefox'                      # should work on most systems
+    #- *googlechrome                 # ... can't get it to work on mac os x or linux
+    #- *safari                       # well: mac os x only 
+  default_timeout_in_seconds:  15   # requests that take longer fail
+
+# define test suite here ... it's basically a Dir.glob-pattern for all test files
+# and dependencies needed by test files
+# qunit will be included automatically ... don't bother
+# If JS-Files need to be loaded in a special order, list them individually ... all
+# paths are relative to the directory from where the test is called (root of your
+# project usually)
+test_suites:
+  suite: 
+    name: 'qunit_tests'
+    test_file_template: 'test/default_test.html' # it should be there ... check it out, adjust it to your needs
+    test_runner: 'test/qunit_tester.rb'
+    combine_tests: false # whether to create one big test file or one pre js-test-file
+    test_files:
+      include: 'spec/tuev/unit_tests/**/*.js' # Dir.glob-pattern
+      exclude: 'config\..*\.js'               # regex of file names to be ignored
+    dependencies:
+      include: # include in a specified order
+        - 'client/public/javascripts/vendor/backbone-0.3.3.js'
+        - 'client/public/javascripts/vendor/backbone.js'
+        - 'client/public/javascripts/vendor/jquery.mockjax.js'
+        - 'client/public/javascripts/vendor/qunit.js'
+        - 'client/public/javascripts/vendor/underscore-1.1.4.js'
+        - 'client/public/javascripts/vendor/underscore.js'
+        - 'client/public/javascripts/vendor/models/*.js'
+        - 'client/public/javascripts/vendor/views/*.js'
+        - 'client/public/javascripts/vendor/controller/*.js'
+  suite: 
+    name: 'selenium_tests'
+    test_url: 'http://soundcloud.com'

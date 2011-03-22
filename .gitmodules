@@ -1,0 +1,6 @@
+[submodule "contrib/qunit"]
+	path = contrib/qunit
+	url = https://github.com/jquery/qunit.git
+[submodule "contrib/mockjax"]
+	path = contrib/mockjax
+	url = https://github.com/appendto/jquery-mockjax.git

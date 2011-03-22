@@ -5,7 +5,13 @@ source "http://rubygems.org"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
+#
+gem "rake"
+gem "selenium-client"
+
 group :development do
+  gem "rake"
+  gem "tuev", :path => "."
   gem "bacon", ">= 0"
   gem "yard", "~> 0.6.0"
   gem "bundler", "~> 1.0.0"

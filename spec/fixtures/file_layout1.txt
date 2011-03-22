@@ -1,0 +1,13 @@
+client/public/javascripts//tests
+client/public/javascripts//tests/.test_helper.js.swp
+client/public/javascripts//tests/fixtures
+client/public/javascripts//tests/fixtures/user_mocks.js
+client/public/javascripts//tests/fixtures/whitelist_list_mocks.js
+client/public/javascripts//tests/models
+client/public/javascripts//tests/models/user_list_tests.js
+client/public/javascripts//tests/models/user_tests.js
+client/public/javascripts//tests/models/whitelist_list_tests.js
+client/public/javascripts//tests/test_helper.js
+client/public/javascripts//tests/views
+client/public/javascripts//tests/views/whitelist_list_tests.js
+client/public/javascripts//tests/views/whitelist_user_tests.js

@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="<%= @qunit_css %>" type="text/css"/>
+    <title><%= @test_set_name %></title>
+    <script type="text/javascript" src="<%= @qunit_js %>"></script>
+    <script type="text/javascript" src="<%= @tuev_qunit_js %>"></script>
+  </head>
+  <body>
+    <h1 id="qunit-header"><%= @test_set_name %> tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
+    <div id="qunit-fixture"></div>
+
+    <script type="text/template" id="user-list-template">
+      <table id="whitelisted-users-list" class="list whitelisted-users">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Whitelisted at</th>
+            <th>Whitelisted by</th>
+            <th>Note</th>
+            <th>Action</th></tr>
+        </thead>
+      </table>
+    </script>
+
+    <script type="text/template" id="list-item-template">
+      <tr class="pending-state-{{ pending }}">
+        <td>
+          <span>
+            <a href="http://soundcloud.com/{{ permalink }}" class="user">{{ username }}</a>
+          </span>
+        </td>
+        <td class="created-at">{{ created_at }}</td>
+        <td>
+          <a href="http://soundcloud.com/{{ whitelisted_by }}">
+            {{ whitelisted_by}} 
+        </a>
+      </td>
+        <td>
+          <a class="cancel-edit-note" href="#/users/{{ APP.user.get('permalink') }}" title="{{ note }}">Cancel edit</a>
+          <a class="edit-note" href="#/users/{{ APP.user.get('permalink') }}/whitelist/{{ permalink }}/edit" title="{{ note }}">Edit note</a>
+        </td>
+        <td><img class="spinner" src="/images/spinner.gif"><button class="revoke">revoke</button></td>
+      </tr>
+      <tr class="whitelist-note-edit">
+        <td colspan="5">
+          <p>Notes:</p>
+          <form class="note" method="post">
+            <textarea name="note">{{ note }}</textarea>
+            <input type="submit" id="submit"><img class="spinner" src="/images/spinner.gif">
+          </form>
+        </td>
+      </tr>
+    </script>
+
+    <script type="text/template" id="search-result-item-template">
+      <div class="search-result-row">
+        <div class="checkbox">&nbsp;<input type="checkbox" name="new-whitelist-users" value="{{ id }}"></div>
+        <div class="avatar"><img src="{{ avatar_url_badge }}"></div>
+        <div class="description">
+          <span class="user-info"><a href="{{ permalink }}" target="_blank" class="user">{{ username }}</a></span>
+          <span> ({{ city }} / {{ country }})</span>
+        </div>
+      </div>
+    </script>
+
+
+    <!-- dependencies -->
+    <% @dependencies.each do |dependency| %>
+      <script type="text/javascript" src="<%= dependency %>"></script>
+    <% end %>
+
+    <!-- tests -->
+    <% @test_set.each do |test| %>
+      <script type="text/javascript" src="<%= test %>"></script>
+    <% end %>
+
+  </body>
+</html>

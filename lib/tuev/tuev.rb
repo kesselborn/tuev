@@ -16,6 +16,14 @@ class Tuev
     File.expand_path(File.join(Tuev.cwd, "test", "tuev", "test_files"))
   end
 
+  def self.selenium_conf
+    @selenium_conf ||= {
+       :host     => config["selenium"]["host"],
+       :port     => config["selenium"]["port"],
+       :browsers => [*config["selenium"]["browsers"]]
+    }
+  end
+
   class TestSuite
     def initialize(test_suite_config)
       begin

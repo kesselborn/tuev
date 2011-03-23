@@ -66,7 +66,7 @@ namespace :tuev do
     failures = 0
     Tuev.test_suites.each do |test_suite|
       test_suite.create_test_files.each do |file|
-        failures += QunitRunner.new(file).run
+        failures += QunitRunner.new(file, Tuev.selenium_conf).run
       end
     end
 

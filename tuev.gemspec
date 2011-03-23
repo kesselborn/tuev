@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kesselborn"]
-  s.date = %q{2011-03-21}
+  s.date = %q{2011-03-22}
   s.description = %q{...}
   s.email = %q{daniel@soundcloud.com}
   s.extra_rdoc_files = [
@@ -18,14 +18,28 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".gitmodules",
+    ".rvmrc",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "contrib/test_default.html",
+    "contrib/tuev.yml",
+    "contrib/tuev_helper.rb",
+    "contrib/tuev_qunit.js",
+    "lib/tasks/tuev.rake",
     "lib/tuev.rb",
+    "lib/tuev/tuev.rb",
+    "lib/tuev/tuev_runner.rb",
+    "spec/fixtures/fake_root/config/tuev.yml",
+    "spec/fixtures/file_layout1.txt",
     "spec/spec_helper.rb",
-    "spec/tuev_spec.rb"
+    "spec/tuev_spec.rb",
+    "tuev.gemspec",
+    "tuev_helper.rb"
   ]
   s.homepage = %q{http://github.com/kesselborn/tuev}
   s.licenses = ["MIT"]
@@ -42,6 +56,9 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rake>, [">= 0"])
+      s.add_runtime_dependency(%q<selenium-client>, [">= 0"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<tuev>, [">= 0"])
       s.add_development_dependency(%q<bacon>, [">= 0"])
       s.add_development_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -49,6 +66,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<selenium-client>, [">= 0"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<tuev>, [">= 0"])
       s.add_dependency(%q<bacon>, [">= 0"])
       s.add_dependency(%q<yard>, ["~> 0.6.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
@@ -57,6 +77,9 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<selenium-client>, [">= 0"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<tuev>, [">= 0"])
     s.add_dependency(%q<bacon>, [">= 0"])
     s.add_dependency(%q<yard>, ["~> 0.6.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])

@@ -3,6 +3,7 @@ PATH
   specs:
     tuev (0.0.0)
       rake
+      selenium-client
 
 GEM
   remote: http://rubygems.org/

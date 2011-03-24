@@ -1,5 +1,5 @@
 # basic selenium stuff
-selenium_stuff:
+selenium:
   host: 'localhost'                   # host which runs selenium server
   port: '4444'                        # selenium server port (if you get connection refused, try 5555)
   browsers:           

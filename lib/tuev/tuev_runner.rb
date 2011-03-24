@@ -25,7 +25,7 @@ class QunitRunner
 
     @selenium_conf[:browsers].each do |browser_id|
       run_in_browser(browser_id) do |browser|
-        browser.open @test_file
+        browser.open "file://#{@test_file}"
         browser.wait_for_page_to_load "60000"
         puts "\n****** testing #{browser.get_text('css=title')} in #{browser_id}"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }

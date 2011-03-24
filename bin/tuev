@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'ostruct'
+require File.expand_path("../../lib/tuev/tuev_runner.rb", __FILE__)
+
+options = {}
+
+opts = OptionParser.new do |opts|
+  opts.banner = "Usage: tuev [options] <qunit html files>"
+
+  opts.separator ""
+  opts.separator "Specific options:"
+
+  options = {
+    :host => 'localhost',
+    :port => '4444',
+    :browsers => ['*firefox'],
+    :timeout => 15
+  }
+
+  opts.on("-h", "--host=HOST",
+          "set selenium host (default: #{options[:host]})") do |host|
+    options[:host] = host || options[:host]
+  end
+
+  # Optional argument; multi-line description.
+  opts.on("-p", "--port=PORT",
+          "set selenium host's port (default: #{options[:port]})") do |port|
+    options[:port] = port || options[:port]
+  end
+  
+  # List of arguments.
+  opts.on("-b", "--browsers=x,y,z", Array, 
+          "browsers where to run this file in (default #{options[:browsers].join(",")})") do |browsers|
+    options[:browsers] = browsers || options[:browsers]
+  end
+
+  opts.on("-t", "--timeout=TIMEOUT",
+          "default timeout that selenium waits before it throws a timeout error (default: #{options[:timeout]})") do |timeout|
+    options[:timeout] = timeout || options[:timeout]
+  end
+
+  opts.on("<files>",
+          "qunit test files that should be tested") do |files|
+    options[:files] = files 
+  end
+
+  # No argument, shows at tail.  This will print an options summary.
+  # Try it and see!
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+
+  # Another typical switch to print the version.
+  opts.on_tail("--version", "Show version") do
+    puts File.read(File.expand_path("../../VERSION", __FILE__))
+    exit
+  end
+end
+
+begin
+  opts.parse!(ARGV) 
+rescue => e
+  if e.is_a?(OptionParser::MissingArgument) && e.args[0] == "-h"
+    print opts
+    exit
+  end
+end
+
+qunit_files = ARGV
+
+if qunit_files.empty?
+  puts ""
+  puts "ERROR: no test files given!"
+  puts ""
+  puts opts
+  exit(1)
+end
+
+errors = 0
+qunit_files.each do |file|
+  path = File.expand_path(file)
+  errors += QunitRunner.new(path, options).run
+end
+
+exit(errors)
+
+#vim:ft=ruby

@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     tuev (0.0.3)
-      rake
       selenium-client
 
 GEM

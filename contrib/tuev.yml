@@ -19,8 +19,7 @@ test_suites:
     name: 'qunit_tests'
 
     # it should be there ... check it out, adjust it to your needs
-    test_file_template: 'test/tuev/contrib/default_test.html' 
-    test_runner: 'test/qunit_tester.rb'
+    test_file_template: 'tests/tuev/contrib/default_test.html' 
     combine_tests: false # whether to create one big test file or one pre js-test-file
     test_files:
       include: 'spec/tuev/unit_tests/**/*.js' # Dir.glob-pattern

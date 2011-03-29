@@ -77,7 +77,7 @@ namespace :tuev do
 
     case failures
     when 0
-      puts "woohoo: all tests pass -- you rock"
+      puts "woohoo: all tests pass -- you rock !!!"
     when 1
       puts "1 test failing -- this is very close to 0 failing actually!"
     when 2..5

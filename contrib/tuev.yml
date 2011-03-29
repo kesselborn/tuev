@@ -19,22 +19,19 @@ test_suites:
     name: 'qunit_tests'
 
     # it should be there ... check it out, adjust it to your needs
-    test_file_template: 'tests/tuev/contrib/default_test.html' 
+    test_file_template: 'tests/tuev/contrib/test_default.html' 
     combine_tests: false # whether to create one big test file or one pre js-test-file
     test_files:
-      include: 'spec/tuev/unit_tests/**/*.js' # Dir.glob-pattern
-      exclude: 'config\..*\.js'               # regex of file names to be ignored
+      include: 'client/public/javascripts/tests/**/*.js' # Dir.glob-pattern
+      exclude: 'mocks.js'
     dependencies:
       include: # include in a specified order
+        - 'client/public/javascripts/vendor/underscore-1.1.4.js'
+        - 'client/public/javascripts/vendor/backbone-0.3.3.js'
+        - 'client/public/javascripts/config/config.js'
+        - 'client/public/javascripts/models/*.js'
+        - 'client/public/javascripts/controller/*.js'
+        - 'client/public/javascripts/views/*.js'
+        - 'client/public/javascripts/tests/**/*mocks.js' # Dir.glob-pattern
         - 'client/public/javascripts/vendor/backbone-0.3.3.js'
         - 'client/public/javascripts/vendor/backbone.js'
-        - 'client/public/javascripts/vendor/jquery.mockjax.js'
-        - 'client/public/javascripts/vendor/qunit.js'
-        - 'client/public/javascripts/vendor/underscore-1.1.4.js'
-        - 'client/public/javascripts/vendor/underscore.js'
-        - 'client/public/javascripts/vendor/models/*.js'
-        - 'client/public/javascripts/vendor/views/*.js'
-        - 'client/public/javascripts/vendor/controller/*.js'
-  -
-    name: 'selenium_tests'
-    test_url: 'http://soundcloud.com'

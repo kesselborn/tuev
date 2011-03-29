@@ -40,7 +40,7 @@ class QunitRunner
         browser.open "file://#{@test_file}"
         browser.wait_for_page_to_load "60000"
         puts "\n****** testing #{browser.get_text('css=title')} in #{browser_id}"
-        puts "file:\n\t#{@test_file}\n"
+        puts "file:\n\t#{@test_file}\n\n"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }
         puts browser.get_eval('window.results.join("\n")')
         60.times{ break if (browser.get_text('id=qunit-testresult') != "Running..." rescue false); sleep 1 }

@@ -54,6 +54,8 @@ namespace :tuev do
                             File.join(Tuev.contrib_dir, "qunit.css"))
     cp_if_not_already_there("contrib/qunit/qunit/qunit.js",
                             File.join(Tuev.contrib_dir, "qunit.js"))
+    cp_if_not_already_there("contrib/jquery-1.5.1.js",
+                            File.join(Tuev.contrib_dir, "jquery-1.5.1.js"))
     cp_if_not_already_there("contrib/mockjax/jquery.mockjax.js",
                             File.join(Tuev.contrib_dir, "jquery.mockjax.js"))
     cp_if_not_already_there("contrib/test_default.html", 

@@ -73,6 +73,25 @@ namespace :tuev do
       end
     end
 
+    puts
+
+    case failures
+    when 0
+      puts "woohoo: all tests pass -- you rock"
+    when 1
+      puts "1 test failing -- this is very close to 0 failing actually!"
+    when 2..5
+      puts "mmm ... #{failures} failing tests! Can't you do better?"
+    when 6..15
+      puts "ufff ... get to work: #{failures} tests are still failing"
+    when 100..1_000_000
+      puts "I hope you don't get paid for this code! #{failures} errors!"
+    else
+      puts "#{failures} failing tests! You gotta be kidding me!"
+    end
+
+    puts
+
     exit(failures)
   end
 

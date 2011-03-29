@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tuev}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kesselborn"]
@@ -29,6 +29,9 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/tuev",
+    "contrib/mockjax/jquery.mockjax.js",
+    "contrib/qunit/qunit/qunit.css",
+    "contrib/qunit/qunit/qunit.js",
     "contrib/test_default.html",
     "contrib/tuev.yml",
     "contrib/tuev_helper.rb",

@@ -7,6 +7,7 @@ QUnit.log = function(result_object, message) {
     message += "\nbut got:  " + result_object.actual
     message += "\nsource:   " + result_object.source
     message += "\n----------------------->8-------------------------\n"
+    window.errors.push(message);
   }
   window.results.push(message);
 
@@ -16,4 +17,7 @@ QUnit.log = function(result_object, message) {
 }; 
 if(!window.results) {
   window.results = [];
+}
+if(!window.errors) {
+  window.errors = [];
 }

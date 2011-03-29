@@ -34,6 +34,7 @@ class QunitRunner
 
   def run
     num_of_errors = 0
+    errors = ""
 
     @selenium_conf[:browsers].each do |browser_id|
       run_in_browser(browser_id) do |browser|
@@ -42,12 +43,22 @@ class QunitRunner
         puts "\n****** testing #{browser.get_text('css=title')} in #{browser_id}"
         puts "file:\n\t#{@test_file}\n\n"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }
+        sleep 1
         puts browser.get_eval('window.results.join("\n")')
+        errors += browser.get_eval('window.errors.join("\n")')
         60.times{ break if (browser.get_text('id=qunit-testresult') != "Running..." rescue false); sleep 1 }
         puts browser.get_text('id=qunit-testresult')
         num_of_errors += browser.get_text("css=#qunit-testresult .failed").to_i
       end
     end
+
+    unless errors == ""
+      puts
+      puts "Finished with these errors:"
+      puts
+      puts errors
+    end
+
     num_of_errors
   end
 end

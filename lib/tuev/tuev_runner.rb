@@ -10,7 +10,7 @@ class QunitRunner
       :host => @selenium_conf[:host],
       :port => @selenium_conf[:port],
       :browser => browser_string,
-      :url => "file://#{@test_file}",
+      :url => "file://",
       :timeout_in_second => 60
     )
 

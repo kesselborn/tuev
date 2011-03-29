@@ -8,12 +8,12 @@ QUnit.log = function(result_object, message) {
     message += "\nsource:   " + result_object.source
     message += "\n----------------------->8-------------------------\n"
   }
-  if(!window.results) {
-    window.results = [];
-  }
   window.results.push(message);
 
   if (window.console && window.console.log) {
     window.console.log(message);
   }                                            
 }; 
+if(!window.results) {
+  window.results = [];
+}

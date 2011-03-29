@@ -40,10 +40,6 @@ opts = OptionParser.new do |opts|
     options[:timeout] = timeout || options[:timeout]
   end
 
-  opts.on("<files>",
-          "qunit test files that should be tested") do |files|
-    options[:files] = files 
-  end
 
   # No argument, shows at tail.  This will print an options summary.
   # Try it and see!

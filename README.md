@@ -14,6 +14,8 @@ CI-able testing for qunit tests
 
 Kickstart
 =========
+### Basic installation
+
 Install gem with
 
     gem install tuev
@@ -23,6 +25,8 @@ or, if you use bundler for your project, add the line
     gem 'tuev'
 
 to your Gemfile. 
+
+### Rakefile integration
 
 If you want to use tuev's rake tasks, add 
 

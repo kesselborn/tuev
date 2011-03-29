@@ -2,7 +2,11 @@
   <head>
     <link rel="stylesheet" href="<%= @qunit_css %>" type="text/css"/>
     <title><%= @test_set_name %></title>
+    <!-- test dependencies: jquery, qunit, mockjax ... delete if they conflict
+         with your needs -->
+    <script type="text/javascript" src="<%= @jquery_js %>"></script>
     <script type="text/javascript" src="<%= @qunit_js %>"></script>
+    <script type="text/javascript" src="<%= @mockjax_js %>"></script>
   </head>
   <body>
     <h1 id="qunit-header"><%= @test_set_name %> tests</h1>

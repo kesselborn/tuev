@@ -29,6 +29,15 @@ If you want to use tuev's rake tasks, add
     require 'bundler/setup' # if you use bundler
     require 'tuev'
 
+to your Rakefile and call
+    
+    rake -T
+
+to get a list of available options. The first thing you want to run is
+
+    rake tuev:prepare
+
+
 Usage
 =====
 Command line utility

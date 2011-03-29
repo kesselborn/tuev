@@ -1,6 +1,8 @@
 require 'fileutils'
 require 'rake'
 
+TEST_DIR="test"
+
 def ansi_colors(color)
   case color
   when :green then ["\033[32m", "\033[0m"]
@@ -44,11 +46,11 @@ namespace :tuev do
     mkdir_if_not_already_there("config")
     cp_if_not_already_there("contrib/tuev.yml", "config/tuev.yml")
 
-    mkdir_if_not_already_there("test/tuev/qunit")
-    mkdir_if_not_already_there("test/tuev/test_files")
-    cp_if_not_already_there("contrib/tuev_helper.rb", "test/tuev_helper.rb")
+    mkdir_if_not_already_there("#{TEST_DIR}/tuev/qunit")
+    mkdir_if_not_already_there("#{TEST_DIR}/tuev/test_files")
+    cp_if_not_already_there("contrib/tuev_helper.rb", "#{TEST_DIR}/tuev_helper.rb")
 
-    mkdir_if_not_already_there("test/tuev/contrib")
+    mkdir_if_not_already_there("#{TEST_DIR}/tuev/contrib")
     cp_if_not_already_there("contrib/qunit/qunit/qunit.css",
                             File.join(Tuev.contrib_dir, "qunit.css"))
     cp_if_not_already_there("contrib/qunit/qunit/qunit.js",

@@ -1,7 +1,7 @@
 require 'erb'
 
 class Tuev
-  @contrib_dir = "test/tuev/contrib"
+  @contrib_dir = "tests/tuev/contrib"
   class << self
     attr_accessor :cwd, :gem_path, :config, :contrib_dir
   end
@@ -13,7 +13,7 @@ class Tuev
   end
 
   def self.test_out
-    File.expand_path(File.join(Tuev.cwd, "test", "tuev", "test_files"))
+    File.expand_path(File.join(Tuev.cwd, "tests", "tuev", "test_files"))
   end
 
   def self.selenium_conf

@@ -32,9 +32,11 @@ class Tuev
         raise "could not find 'test_file_template' setting for current suite"
       end
 
-      @qunit_css       = file_url(Tuev.contrib_dir, "qunit.css")
+      @jquery_js       = file_url(Tuev.contrib_dir, "jquery-1.5.1.js")
+      @mockjax_js      = file_url(Tuev.contrib_dir, "jquery.mockjax.js")
       @qunit_js        = file_url(Tuev.contrib_dir, "qunit.js")
       @tuev_qunit_js   = file_url(Tuev.contrib_dir, "tuev_qunit.js")
+      @qunit_css       = file_url(Tuev.contrib_dir, "qunit.css")
       @test_suite_name = test_suite_config["name"]
 
       @combine_tests   = test_suite_config["combine_tests"]
@@ -85,14 +87,24 @@ class Tuev
       template.result(binding)
     end
 
+
     def build_file_list(includes_and_excludes)
-      file_list = [*includes_and_excludes["include"]].map{|x| Dir.glob(x)}.flatten
+      file_list = [*includes_and_excludes["include"]].map do |pattern| 
+        files = Dir.glob(pattern)
+        if files.empty?
+          raise "could not find file matching '#{pattern}'"
+        end
+        files
+      end
+
+      file_list.flatten!
 
       if excludes = includes_and_excludes["exclude"]
         [*excludes].each do |exclude_regexp|
           file_list.delete_if{|x| x =~ /#{exclude_regexp}/ }
         end
       end
+
 
       file_list.map{|x| file_url(x)}
     end

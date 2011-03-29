@@ -5,18 +5,18 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tuev}
-  s.version = "0.0.3"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kesselborn"]
-  s.date = %q{2011-03-24}
+  s.date = %q{2011-03-29}
   s.default_executable = %q{tuev}
   s.description = %q{...}
   s.email = %q{daniel@soundcloud.com}
   s.executables = ["tuev"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
@@ -25,9 +25,10 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "bin/tuev",
     "contrib/test_default.html",
     "contrib/tuev.yml",
     "contrib/tuev_helper.rb",

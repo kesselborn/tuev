@@ -40,12 +40,19 @@ class QunitRunner
       run_in_browser(browser_id) do |browser|
         browser.open "file://#{@test_file}"
         browser.wait_for_page_to_load "60000"
-        puts "\n****** testing #{browser.get_text('css=title')} in #{browser_id}"
-        puts "file:\n\t#{@test_file}\n\n"
+        puts "\ntesting: #{@test_file}\n\n"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }
         sleep 1
-        puts browser.get_eval('window.results.join("\n")')
-        errors += browser.get_eval('window.errors.join("\n")')
+        
+        if browser.get_eval("typeof(window.results) == 'undefined'") 
+          $stderr.puts "\tINFO: some lines of javascript will give you detailed testing output. For more info, see:"
+          $stderr.puts "\thttps://github.com/kesselborn/tuev/raw/master/contrib/tuev_qunit.js"
+          $stderr.puts
+        else
+          puts browser.get_eval('window.results.join("\n")')
+          errors += browser.get_eval('window.errors.join("\n")')
+        end
+
         60.times{ break if (browser.get_text('id=qunit-testresult') != "Running..." rescue false); sleep 1 }
         puts browser.get_text('id=qunit-testresult')
         num_of_errors += browser.get_text("css=#qunit-testresult .failed").to_i

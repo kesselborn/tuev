@@ -3,7 +3,21 @@ require 'erb'
 class Tuev
   @contrib_dir = "tests/tuev/contrib"
   class << self
-    attr_accessor :cwd, :gem_path, :config, :contrib_dir
+    attr_accessor :cwd, :gem_path, :config, :contrib_dir, :read_config
+  end
+
+  def self.read_config
+    config_file = ENV['TUEV_CONFIG'] || File.join(Tuev.cwd, "config/tuev.yml")
+
+    if File.exists?(config_file)
+      @config = YAML.load_file(config_file) 
+    else
+      raise "\n\nERROR: Can't find '#{config_file}' ... create it or set TUEV_CONFIG to point to a valid tuev.yml\n\n"
+    end
+  end
+
+  def self.config
+    return @config ||= read_config
   end
 
   def self.test_suites
@@ -13,7 +27,7 @@ class Tuev
   end
 
   def self.test_out
-    File.expand_path(File.join(Tuev.cwd, "tests", "tuev", "test_files"))
+    config["tests_out"] || "/tmp" #File.expand_path(File.join(Tuev.cwd, "tests", "tuev", "test_files"))
   end
 
   def self.selenium_conf

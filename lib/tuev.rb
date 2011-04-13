@@ -11,5 +11,3 @@ else
   Dir["#{Tuev.gem_path}/lib/tasks/*.rake"].each { |ext| load ext }
 end
 
-config_file = File.join(Tuev.cwd, "config/tuev.yml")
-Tuev.config = YAML.load_file(config_file) if File.exists?(config_file)

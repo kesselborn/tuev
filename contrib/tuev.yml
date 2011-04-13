@@ -2,6 +2,7 @@
 selenium:
   host: 'localhost'                   # host which runs selenium server
   port: '4444'                        # selenium server port (if you get connection refused, try 5555)
+  tests_out: '/tmp'                   # where your temporary files should be saved
   browsers:           
     - '*firefox'                      # should work on most systems
     #- *googlechrome                 # ... can't get it to work on mac os x or linux
@@ -20,7 +21,7 @@ test_suites:
 
     # it should be there ... check it out, adjust it to your needs
     test_file_template: 'tests/tuev/contrib/test_default.html' 
-    combine_tests: false # whether to create one big test file or one pre js-test-file
+    combine_tests: true # whether to create one big test file or one pre js-test-file
     test_files:
       include: 'client/public/javascripts/tests/**/*.js' # Dir.glob-pattern
       exclude: 'mocks.js'

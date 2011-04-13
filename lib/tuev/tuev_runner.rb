@@ -43,8 +43,7 @@ class QunitRunner
         puts "\ntesting: #{@test_file}\n\n"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }
         sleep 1
-        
-        if browser.get_eval("typeof(window.results) == 'undefined'") 
+        if browser.get_eval("typeof(window.results)") == "undefined"
           $stderr.puts "\tINFO: some lines of javascript will give you detailed testing output. For more info, see:"
           $stderr.puts "\thttps://github.com/kesselborn/tuev/raw/master/contrib/tuev_qunit.js"
           $stderr.puts
@@ -55,6 +54,7 @@ class QunitRunner
 
         60.times{ break if (browser.get_text('id=qunit-testresult') != "Running..." rescue false); sleep 1 }
         puts browser.get_text('id=qunit-testresult')
+        puts
         num_of_errors += browser.get_text("css=#qunit-testresult .failed").to_i
       end
     end

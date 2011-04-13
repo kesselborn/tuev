@@ -1,3 +1,7 @@
+/* this snippet will save qunit test information in an object called 
+* window.results and window.errors .
+* Use this in conjunction with tuev to get detailed testing output */
+
 QUnit.log = function(result_object, qunit_message) {
   message =  result_object.result ? "ok      " : "FAILED  ";
   message += result_object.message;

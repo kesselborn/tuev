@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kesselborn"]
-  s.date = %q{2011-04-14}
+  s.date = %q{2011-04-15}
   s.default_executable = %q{tuev}
   s.description = %q{...}
   s.email = %q{daniel@soundcloud.com}
@@ -51,7 +51,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/kesselborn/tuev}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.0}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{run qunit & selenium tests with rake}
   s.test_files = [
     "spec/spec_helper.rb",

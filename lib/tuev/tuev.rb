@@ -10,7 +10,7 @@ class Tuev
     config_file = ENV['TUEV_CONFIG'] || File.join(Tuev.cwd, "config/tuev.yml")
 
     if File.exists?(config_file)
-      @config = YAML.load_file(config_file) 
+      @config = YAML.load_file(config_file)
     else
       raise "\n\nERROR: Can't find '#{config_file}' ... create it or set TUEV_CONFIG to point to a valid tuev.yml\n\n"
     end
@@ -53,7 +53,7 @@ class Tuev
       @qunit_css       = file_url(Tuev.contrib_dir, "qunit.css")
       @test_suite_name = test_suite_config["name"]
 
-      @combine_tests   = test_suite_config["combine_tests"]
+      @combine_tests   =  test_suite_config["combine_tests"]
 
       @test_set = @tests   = build_file_list(test_suite_config["test_files"])
 
@@ -62,7 +62,7 @@ class Tuev
 
     def create_test_files
       files = []
-      if @combine_tests
+      if ENV['COMBINE_TESTS'] == 'true' || (ENV['COMBINE_TESTS'] != 'false' && @combine_tests)
         files << File.join(out_path, "#{@test_suite_name}.html")
 
         @test_set_name = title_from_filename(files.last)
@@ -71,7 +71,7 @@ class Tuev
       else
         @tests.each do |test|
           files << File.join(out_path, "#{@test_suite_name}_#{test.gsub('file://','').gsub(Tuev.cwd, '').tr('/.','_')}.html")
-          
+
           @test_set_name = title_from_filename(files.last)
           @test_set = [test]
           save(render_template(test), files.last)

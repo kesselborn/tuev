@@ -96,7 +96,7 @@ namespace :tuev do
   end
 
   desc "create static testfiles for qunit tests"
-  task :create_testfiles => :clean_testfiles do
+  task :create_testfiles do
     files = []
     Tuev.test_suites.each do |test_suite|
       files << test_suite.create_test_files
@@ -105,8 +105,4 @@ namespace :tuev do
     puts "Created the following test files:\n\t#{files.join("\n\t")}"
   end
 
-  desc "delete all statically created testfiles"
-  task :clean_testfiles do
-    FileUtils.rm_f(Dir.glob(File.join(Tuev.test_out, "*.html")))
-  end
 end

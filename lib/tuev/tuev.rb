@@ -27,7 +27,7 @@ class Tuev
   end
 
   def self.test_out
-    config["tests_out"] || "/tmp" #File.expand_path(File.join(Tuev.cwd, "tests", "tuev", "test_files"))
+    config["tests_out"] || "/tmp"
   end
 
   def self.selenium_conf

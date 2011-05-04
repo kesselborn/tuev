@@ -1,5 +1,5 @@
 require "selenium/client"
-class QunitRunner 
+class QunitRunner
   def initialize(path, selenium_conf)
     @test_file = path
     @selenium_conf = selenium_conf
@@ -9,12 +9,12 @@ class QunitRunner
     begin
       Net::HTTP.new(@selenium_conf[:host], @selenium_conf[:port]).get2("/")
     rescue
-      puts 
+      puts
       puts "It seems that there is no selenium server listening on '#{@selenium_conf[:host]}:#{@selenium_conf[:port]}'"
-      puts 
+      puts
       puts "... aborting (try installing the gem 'selenium-server' and execute 'selenium-server' for an easy solution)"
-      puts 
-      puts 
+      puts
+      puts
       exit(1)
     end
 
@@ -40,7 +40,7 @@ class QunitRunner
       run_in_browser(browser_id) do |browser|
         browser.open "file://#{@test_file}"
         browser.wait_for_page_to_load "60000"
-        puts "\ntesting: #{@test_file}\n\n"
+        puts "\ntesting on #{browser_id}: #{@test_file}\n\n"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }
         sleep 1
         if browser.get_eval("typeof(window.results)") == "undefined"

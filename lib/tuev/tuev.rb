@@ -108,6 +108,7 @@ class Tuev
         if files.empty?
           raise "could not find file matching '#{pattern}'"
         end
+
         files
       end
 
@@ -120,7 +121,7 @@ class Tuev
       end
 
 
-      file_list.map{|x| file_url(x)}
+      file_list.map{|x| file_url(x)}.uniq
     end
 
     def file_url(*relativ_path_parts)

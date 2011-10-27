@@ -30,6 +30,31 @@ Jeweler::Tasks.new do |gem|
 end
 Jeweler::RubygemsDotOrgTasks.new
 
+gemspec = 'tuev.gemspec'
+
+namespace :gem do
+  desc "Release a new version of the gem to the soundcloud repo"
+  task :screlease => [ 'version:bump:patch', 'gemspec', :deploy ]
+
+  desc "Deploys the built gem to the soundcloud gem repository: gems.soundcloud.com"
+  task :deploy do
+   Dir.chdir File.dirname(__FILE__)
+   spec = eval(IO.read(gemspec))
+   version = spec.version.to_s
+   raise "Version #{version} already deployed" if `git fetch --tags && git tag`.split(/\n/).include?(version)
+    sh <<-END
+      git commit -a --allow-empty -m 'Bump version to #{version}'
+      git tag -a #{version} -m 'Version #{version}'
+      git push
+      git push --tags
+      gem build #{gemspec} &&\
+      scp #{spec.file_name} soundcloud@gems.int.s-cloud.net:/srv/www/gems/gems &&\
+      ssh soundcloud@gems.int.s-cloud.net 'gem generate_index -d /srv/www/gems' &&\
+      rm #{spec.file_name}
+    END
+  end
+end
+
 require 'rake/testtask'
 Rake::TestTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'

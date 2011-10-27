@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tuev (0.5.0)
+    tuev (0.5.1)
       selenium-client
 
 GEM

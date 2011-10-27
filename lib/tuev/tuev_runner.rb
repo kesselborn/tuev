@@ -16,16 +16,16 @@ class QunitRunner
   end
 
   def split_url
-    @test_file.match(/(?<host>.*:\/\/[^\/]+)(?<path>.*)$/)
+    @test_file.match(/(.*:\/\/[^\/]+)(.*)$/)
   end
 
   # host & path as is needed below ...
   def host
-    local_file? ? "file://" : split_url["host"]
+    local_file? ? "file://" : split_url[1]
   end
 
   def path
-    local_file? ? @test_file : split_url["path"]
+    local_file? ? @test_file : split_url[2]
   end
 
 

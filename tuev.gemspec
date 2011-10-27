@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
     "lib/tuev/tuev_runner.rb",
     "spec/fixtures/fake_root/config/tuev.yml",
     "spec/fixtures/file_layout1.txt",
+    "spec/qunit_runner_spec.rb",
     "spec/spec_helper.rb",
     "spec/tuev_spec.rb",
     "tuev.gemspec",

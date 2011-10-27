@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tuev}
-  s.version = "0.4.3"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kesselborn"]
-  s.date = %q{2011-06-13}
+  s.date = %q{2011-10-27}
   s.default_executable = %q{tuev}
   s.description = %q{...}
   s.email = %q{daniel@soundcloud.com}
@@ -54,6 +54,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.6.2}
   s.summary = %q{run qunit & selenium tests with rake}
   s.test_files = [
+    "spec/qunit_runner_spec.rb",
     "spec/spec_helper.rb",
     "spec/tuev_spec.rb"
   ]

@@ -10,6 +10,14 @@ describe "QunitRunner" do
   end
 
   it "should detect the base host correctly" do
+    QunitRunner.new("http://example.com:1234", "").host.should == "http://example.com:1234"
+    QunitRunner.new("http://example.com:1234/", "").host.should == "http://example.com:1234"
+    QunitRunner.new("http://example.com:1234/lirumlarum", "").host.should == "http://example.com:1234"
+
+    QunitRunner.new("https://example.com:1234", "").host.should == "https://example.com:1234"
+    QunitRunner.new("https://example.com:1234/", "").host.should == "https://example.com:1234"
+    QunitRunner.new("https://example.com:1234/lirumlarum", "").host.should == "https://example.com:1234"
+
     QunitRunner.new("http://example.com", "").host.should == "http://example.com"
     QunitRunner.new("http://example.com/", "").host.should == "http://example.com"
     QunitRunner.new("http://example.com/lirumlarum", "").host.should == "http://example.com"

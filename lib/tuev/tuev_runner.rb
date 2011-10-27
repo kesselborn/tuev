@@ -2,8 +2,32 @@ require "selenium/client"
 class QunitRunner
   def initialize(path, selenium_conf)
     @test_file = path
+
+    if local_file? && !(@test_file =~ /file:\/\//)
+      @test_file = "file://#{File.expand_path(@test_file)}"
+    end
+
     @selenium_conf = selenium_conf
   end
+
+  def local_file?
+    # it's a local file if it has not any protocoll or the file:// protcoll
+    !(@test_file =~ /:\/\//) || !!(@test_file =~ /file:\/\//)
+  end
+
+  def split_url
+    @test_file.match(/(?<host>.*:\/\/[^\/]+)(?<path>.*)$/)
+  end
+
+  # host & path as is needed below ...
+  def host
+    local_file? ? "file://" : split_url["host"]
+  end
+
+  def path
+    local_file? ? @test_file : split_url["path"]
+  end
+
 
   def run_in_browser(browser_string)
     begin
@@ -22,7 +46,7 @@ class QunitRunner
       :host => @selenium_conf[:host],
       :port => @selenium_conf[:port],
       :browser => browser_string,
-      :url => "file://",
+      :url => host,
       :timeout_in_second => 60
     )
 
@@ -38,7 +62,7 @@ class QunitRunner
 
     @selenium_conf[:browsers].each do |browser_id|
       run_in_browser(browser_id) do |browser|
-        browser.open "file://#{@test_file}"
+        browser.open path
         browser.wait_for_page_to_load "60000"
         puts "\ntesting on #{browser_id}: #{@test_file}\n\n"
         60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }

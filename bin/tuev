@@ -28,9 +28,9 @@ opts = OptionParser.new do |opts|
           "set selenium host's port (default: #{options[:port]})") do |port|
     options[:port] = port || options[:port]
   end
-  
+
   # List of arguments.
-  opts.on("-b", "--browsers=x,y,z", Array, 
+  opts.on("-b", "--browsers=x,y,z", Array,
           "browsers where to run this file in (default #{options[:browsers].join(",")})") do |browsers|
     options[:browsers] = browsers || options[:browsers]
   end
@@ -56,7 +56,7 @@ opts = OptionParser.new do |opts|
 end
 
 begin
-  opts.parse!(ARGV) 
+  opts.parse!(ARGV)
 rescue => e
   if e.is_a?(OptionParser::MissingArgument) && e.args[0] == "-h"
     print opts
@@ -76,8 +76,7 @@ end
 
 errors = 0
 qunit_files.each do |file|
-  path = File.expand_path(file)
-  errors += QunitRunner.new(path, options).run
+  errors += QunitRunner.new(file, options).run
 end
 
 exit(errors)

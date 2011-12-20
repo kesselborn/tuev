@@ -29,6 +29,11 @@ opts = OptionParser.new do |opts|
     options[:port] = port || options[:port]
   end
 
+  opts.on("-w", "--wait=SECONDS",
+          "do a wait after each test") do |port|
+    options[:port] = port || options[:port]
+  end
+
   # List of arguments.
   opts.on("-b", "--browsers=x,y,z", Array,
           "browsers where to run this file in (default #{options[:browsers].join(",")})") do |browsers|

@@ -83,11 +83,83 @@ GC   - 200704_19" />
     <property name="java.specification.version" value="1.5" />
     <property name="com.ibm.oti.jcl.build" value="20070405_1655" />
   </properties>
-  <testcase classname="net.cars.engine.CarburateurTest" name="mix" time="0.0040">
-    <failure message="Mix should be exactly 25. expected:&lt;25&gt; but was:&lt;20&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Mix should be exactly 25. expected:&lt;25&gt; but was:&lt;20&gt;
-	at net.cars.engine.CarburateurTest.mix(CarburateurTest.java:34)
-</failure>
+  <testcase classname="test.1" name="test1" time="0.0001">
+    <failure message="DOUH! ... I failed" type="Runtime.Douh.Error">
+      16:23:32.322 ERROR - Failed to start new browser session, shutdown browser and clear all session data
+      org.openqa.selenium.server.RemoteCommandException: timed out waiting for window 'null' to appear
+      at org.openqa.selenium.server.FrameGroupCommandQueueSet.waitForLoad(FrameGroupCommandQueueSet.java:579)
+      at org.openqa.selenium.server.FrameGroupCommandQueueSet.waitForLoad(FrameGroupCommandQueueSet.java:537)
+      at org.openqa.selenium.server.BrowserSessionFactory.createNewRemoteSession(BrowserSessionFactory.java:375)
+      at org.openqa.selenium.server.BrowserSessionFactory.getNewBrowserSession(BrowserSessionFactory.java:125)
+      at org.openqa.selenium.server.BrowserSessionFactory.getNewBrowserSession(BrowserSessionFactory.java:86)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.getNewBrowserSession(SeleniumDriverResourceHandler.java:809)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.doCommand(SeleniumDriverResourceHandler.java:435)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.handleCommandRequest(SeleniumDriverResourceHandler.java:405)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.handle(SeleniumDriverResourceHandler.java:149)
+      at org.openqa.jetty.http.HttpContext.handle(HttpContext.java:1530)
+      at org.openqa.jetty.http.HttpContext.handle(HttpContext.java:1482)
+      at org.openqa.jetty.http.HttpServer.service(HttpServer.java:909)
+      at org.openqa.jetty.http.HttpConnection.service(HttpConnection.java:820)
+      at org.openqa.jetty.http.HttpConnection.handleNext(HttpConnection.java:986)
+      at org.openqa.jetty.http.HttpConnection.handle(HttpConnection.java:837)
+      at org.openqa.jetty.http.SocketListener.handleConnection(SocketListener.java:243)
+      at org.openqa.jetty.util.ThreadedServer.handle(ThreadedServer.java:357)
+      at org.openqa.jetty.util.ThreadPool$PoolThread.run(ThreadPool.java:534)
+      16:23:32.324 INFO - Killing Safari...
+    </failure>
   </testcase>
+  <testcase classname="test.2" name="test2" time="0.0002">
+    <failure message="DOUH! ... I failed" type="Runtime.Douh.Error">
+      16:23:32.322 ERROR - Failed to start new browser session, shutdown browser and clear all session data
+      org.openqa.selenium.server.RemoteCommandException: timed out waiting for window 'null' to appear
+      at org.openqa.selenium.server.FrameGroupCommandQueueSet.waitForLoad(FrameGroupCommandQueueSet.java:579)
+      at org.openqa.selenium.server.FrameGroupCommandQueueSet.waitForLoad(FrameGroupCommandQueueSet.java:537)
+      at org.openqa.selenium.server.BrowserSessionFactory.createNewRemoteSession(BrowserSessionFactory.java:375)
+      at org.openqa.selenium.server.BrowserSessionFactory.getNewBrowserSession(BrowserSessionFactory.java:125)
+      at org.openqa.selenium.server.BrowserSessionFactory.getNewBrowserSession(BrowserSessionFactory.java:86)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.getNewBrowserSession(SeleniumDriverResourceHandler.java:809)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.doCommand(SeleniumDriverResourceHandler.java:435)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.handleCommandRequest(SeleniumDriverResourceHandler.java:405)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.handle(SeleniumDriverResourceHandler.java:149)
+      at org.openqa.jetty.http.HttpContext.handle(HttpContext.java:1530)
+      at org.openqa.jetty.http.HttpContext.handle(HttpContext.java:1482)
+      at org.openqa.jetty.http.HttpServer.service(HttpServer.java:909)
+      at org.openqa.jetty.http.HttpConnection.service(HttpConnection.java:820)
+      at org.openqa.jetty.http.HttpConnection.handleNext(HttpConnection.java:986)
+      at org.openqa.jetty.http.HttpConnection.handle(HttpConnection.java:837)
+      at org.openqa.jetty.http.SocketListener.handleConnection(SocketListener.java:243)
+      at org.openqa.jetty.util.ThreadedServer.handle(ThreadedServer.java:357)
+      at org.openqa.jetty.util.ThreadPool$PoolThread.run(ThreadPool.java:534)
+      16:23:32.324 INFO - Killing Safari...
+    </failure>
+  </testcase>
+  <testcase classname="test.3" name="test3" time="0.0003"></testcase>
+  <testcase classname="test.4" name="test4" time="0.0004">
+    <failure message="DOUH! ... I failed" type="Runtime.Douh.Error">
+      16:23:32.322 ERROR - Failed to start new browser session, shutdown browser and clear all session data
+      org.openqa.selenium.server.RemoteCommandException: timed out waiting for window 'null' to appear
+      at org.openqa.selenium.server.FrameGroupCommandQueueSet.waitForLoad(FrameGroupCommandQueueSet.java:579)
+      at org.openqa.selenium.server.FrameGroupCommandQueueSet.waitForLoad(FrameGroupCommandQueueSet.java:537)
+      at org.openqa.selenium.server.BrowserSessionFactory.createNewRemoteSession(BrowserSessionFactory.java:375)
+      at org.openqa.selenium.server.BrowserSessionFactory.getNewBrowserSession(BrowserSessionFactory.java:125)
+      at org.openqa.selenium.server.BrowserSessionFactory.getNewBrowserSession(BrowserSessionFactory.java:86)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.getNewBrowserSession(SeleniumDriverResourceHandler.java:809)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.doCommand(SeleniumDriverResourceHandler.java:435)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.handleCommandRequest(SeleniumDriverResourceHandler.java:405)
+      at org.openqa.selenium.server.SeleniumDriverResourceHandler.handle(SeleniumDriverResourceHandler.java:149)
+      at org.openqa.jetty.http.HttpContext.handle(HttpContext.java:1530)
+      at org.openqa.jetty.http.HttpContext.handle(HttpContext.java:1482)
+      at org.openqa.jetty.http.HttpServer.service(HttpServer.java:909)
+      at org.openqa.jetty.http.HttpConnection.service(HttpConnection.java:820)
+      at org.openqa.jetty.http.HttpConnection.handleNext(HttpConnection.java:986)
+      at org.openqa.jetty.http.HttpConnection.handle(HttpConnection.java:837)
+      at org.openqa.jetty.http.SocketListener.handleConnection(SocketListener.java:243)
+      at org.openqa.jetty.util.ThreadedServer.handle(ThreadedServer.java:357)
+      at org.openqa.jetty.util.ThreadPool$PoolThread.run(ThreadPool.java:534)
+      16:23:32.324 INFO - Killing Safari...
+    </failure>
+  </testcase>
+  <testcase classname="test.1" name="test1" time="0.0001"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

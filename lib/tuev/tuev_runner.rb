@@ -69,12 +69,12 @@ class QunitRunner
         puts "\ntesting on #{browser_id}: #{@test_file}\n\n"
         120.times{
           if  (browser.get_text("css=.jasmine_reporter") rescue false)
-            test_framework = "jasmine" 
+            test_framework = "jasmine"
             break
           end
 
           if (browser.get_text('id=qunit-testresult') != "Running..." rescue false)
-            test_framework = "qunit" 
+            test_framework = "qunit"
             break
           end
 
@@ -83,19 +83,33 @@ class QunitRunner
 
         sleep 1
 
-        if browser.get_eval("typeof(window.results)") == "undefined"
-          $stderr.puts "\tINFO: some lines of javascript will give you detailed testing output. For more info, see:"
-          $stderr.puts "\thttps://github.com/kesselborn/tuev/raw/master/contrib/tuev_qunit.js"
-          $stderr.puts
+        output =""
+        num_of_errors = 0
+        if test_framework == "qunit"
+          if browser.get_eval("typeof(window.results)") == "undefined"
+            $stderr.puts "\tINFO: some lines of javascript will give you detailed testing output. For more info, see:"
+            $stderr.puts "\thttps://github.com/kesselborn/tuev/raw/master/contrib/tuev_qunit.js"
+            $stderr.puts
+          else
+            puts browser.get_eval('window.results.join("\n")')
+            errors += browser.get_eval('window.errors.join("\n")')
+          end
+
+          output = browser.get_text('id=qunit-testresult')
+          num_of_errors += browser.get_text("css=#qunit-testresult .failed").to_i
         else
-          puts browser.get_eval('window.results.join("\n")')
-          errors += browser.get_eval('window.errors.join("\n")')
+          output = browser.get_eval('window.message')
+          junit_output = browser.get_eval('window.junitXML')
+          File.open("junit_results.xml", "w") do |f|
+            f << junit_output
+          end
+          num_of_errors += browser.get_eval('window.isSuccess') ? 0 : 1
         end
 
-        output = test_framework == "qunit" ? browser.get_text('id=qunit-testresult') : browser.get_text("css=.jasmine_reporter")
         puts output
         puts
-        num_of_errors += 0 #browser.get_text("css=#qunit-testresult .failed").to_i
+
+        num_of_errors
       end
     end
 

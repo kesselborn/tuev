@@ -62,11 +62,27 @@ class QunitRunner
 
     @selenium_conf[:browsers].each do |browser_id|
       run_in_browser(browser_id) do |browser|
+        test_framework = ""
+
         browser.open path
         browser.wait_for_page_to_load "60000"
         puts "\ntesting on #{browser_id}: #{@test_file}\n\n"
-        60.times{ break if (browser.is_element_present("id=qunit-testresult") rescue false); sleep 1 }
+        120.times{
+          if  (browser.get_text("css=.jasmine_reporter") rescue false)
+            test_framework = "jasmine" 
+            break
+          end
+
+          if (browser.get_text('id=qunit-testresult') != "Running..." rescue false)
+            test_framework = "qunit" 
+            break
+          end
+
+          sleep 1
+        }
+
         sleep 1
+
         if browser.get_eval("typeof(window.results)") == "undefined"
           $stderr.puts "\tINFO: some lines of javascript will give you detailed testing output. For more info, see:"
           $stderr.puts "\thttps://github.com/kesselborn/tuev/raw/master/contrib/tuev_qunit.js"
@@ -76,10 +92,10 @@ class QunitRunner
           errors += browser.get_eval('window.errors.join("\n")')
         end
 
-        60.times{ break if (browser.get_text('id=qunit-testresult') != "Running..." rescue false); sleep 1 }
-        puts browser.get_text('id=qunit-testresult')
+        output = test_framework == "qunit" ? browser.get_text('id=qunit-testresult') : browser.get_text("css=.jasmine_reporter")
+        puts output
         puts
-        num_of_errors += browser.get_text("css=#qunit-testresult .failed").to_i
+        num_of_errors += 0 #browser.get_text("css=#qunit-testresult .failed").to_i
       end
     end
 

@@ -68,6 +68,11 @@ class QunitRunner
         browser.wait_for_page_to_load "60000"
         puts "\ntesting on #{browser_id}: #{@test_file}\n\n"
         120.times{
+          if  (browser.get_text("id=tyrtle-result") rescue false)
+            test_framework = "tyrtle"
+            break
+          end
+
           if  (browser.get_text("css=.jasmine_reporter") rescue false)
             test_framework = "jasmine"
             break
